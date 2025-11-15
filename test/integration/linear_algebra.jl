@@ -433,6 +433,7 @@ end
     end
 end
 
+<<<<<<< HEAD
 @testset "istriu" begin
     x = Reactant.TestUtils.construct_test_array(Float32, 8, 8)
     x_triu = triu(x, 4)
@@ -463,4 +464,15 @@ end
     res_ra = @jit LinearAlgebra.det(x_ra)
     res = LinearAlgebra.det(x)
     @test res_ra ≈ res
+=======
+@testset "cross" begin
+    x = Reactant.TestUtils.construct_test_array(Float32, 3)
+    x_ra = Reactant.to_rarray(x)
+    y = Reactant.TestUtils.construct_test_array(Float32, 3)
+    y_ra = Reactant.to_rarray(y)
+
+    @test @jit(LinearAlgebra.cross(x_ra, y_ra)) ≈ LinearAlgebra.cross(x, y)
+    @test @jit(LinearAlgebra.cross(x_ra, y)) ≈ LinearAlgebra.cross(x, y)
+    @test @jit(LinearAlgebra.cross(x, y_ra)) ≈ LinearAlgebra.cross(x, y)
+>>>>>>> fba5bdf4c (feat: cross)
 end
